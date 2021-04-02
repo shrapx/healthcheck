@@ -83,7 +83,7 @@ func (h *health) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	code := http.StatusOK
 	errorMsgs := make(map[string]string, nCheckers)
 
-	ctx, cancel := context.Background(), func() {}
+	ctx, cancel := r.Context(), func() {}
 	if h.timeout > 0 {
 		ctx, cancel = context.WithTimeout(ctx, h.timeout)
 	}
